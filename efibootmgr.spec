@@ -4,7 +4,7 @@
 #
 Name     : efibootmgr
 Version  : 0.12
-Release  : 2
+Release  : 3
 URL      : https://github.com/vathpela/efibootmgr-devel/archive/efibootmgr-0.12.tar.gz
 Source0  : https://github.com/vathpela/efibootmgr-devel/archive/efibootmgr-0.12.tar.gz
 Summary  : No detailed summary available
