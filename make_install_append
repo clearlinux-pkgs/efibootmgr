@@ -1,2 +1,2 @@
-install -D -m 00755 src/efibootmgr/efibootmgr %{buildroot}/usr/bin/efibootmgr
-install -D -m 00644 src/man/man8/efibootmgr.8 %{buildroot}/usr/share/man/man8/efibootmgr.8
+install -D -m 00755 src/efibootmgr %{buildroot}/usr/bin/efibootmgr
+install -D -m 00644 src/efibootmgr.8 %{buildroot}/usr/share/man/man8/efibootmgr.8

@@ -1,5 +1,5 @@
 PKG_NAME := efibootmgr
-URL := https://github.com/vathpela/efibootmgr-devel/archive/efibootmgr-0.12.tar.gz
-ARCHIVES :=
+URL := https://github.com/rhinstaller/efibootmgr/archive/15.tar.gz
+
 
 include ../common/Makefile.common
