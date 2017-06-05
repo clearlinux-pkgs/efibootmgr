@@ -4,7 +4,7 @@
 #
 Name     : efibootmgr
 Version  : 15
-Release  : 5
+Release  : 6
 URL      : https://github.com/rhinstaller/efibootmgr/archive/15.tar.gz
 Source0  : https://github.com/rhinstaller/efibootmgr/archive/15.tar.gz
 Summary  : No detailed summary available
