@@ -1,0 +1,11 @@
+--- efibootmgr-devel-efibootmgr-0.12/Makefile~	2015-05-28 14:23:42.000000000 +0000
++++ efibootmgr-devel-efibootmgr-0.12/Makefile	2016-10-15 20:30:16.563691784 +0000
+@@ -8,7 +8,7 @@
+   RELEASE_STRING := $(RELEASE_NAME)-$(RELEASE_MAJOR).$(RELEASE_MINOR)
+ 
+   CFLAGS = $(EXTRA_CFLAGS) -DEFIBOOTMGR_VERSION=\"$(RELEASE_MAJOR).$(RELEASE_MINOR)\" \
+-	    -Wsign-compare -Wall -Werror -g -D_FILE_OFFSET_BITS=64 \
++	    -Wsign-compare -Wall -g -D_FILE_OFFSET_BITS=64 \
+ 	    -I/usr/include/efivar
+ 
+   MODULES := src
