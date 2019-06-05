@@ -4,7 +4,7 @@
 #
 Name     : efibootmgr
 Version  : 16
-Release  : 9
+Release  : 10
 URL      : https://github.com/rhboot/efibootmgr/releases/download/16/efibootmgr-16.tar.bz2
 Source0  : https://github.com/rhboot/efibootmgr/releases/download/16/efibootmgr-16.tar.bz2
 Summary  : EFI Boot Manager
