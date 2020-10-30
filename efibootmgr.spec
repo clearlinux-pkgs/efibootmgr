@@ -4,14 +4,15 @@
 #
 Name     : efibootmgr
 Version  : 16
-Release  : 10
+Release  : 11
 URL      : https://github.com/rhboot/efibootmgr/releases/download/16/efibootmgr-16.tar.bz2
 Source0  : https://github.com/rhboot/efibootmgr/releases/download/16/efibootmgr-16.tar.bz2
 Summary  : EFI Boot Manager
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
-Requires: efibootmgr-bin
-Requires: efibootmgr-doc
+Requires: efibootmgr-bin = %{version}-%{release}
+Requires: efibootmgr-license = %{version}-%{release}
+Requires: efibootmgr-man = %{version}-%{release}
 BuildRequires : pkgconfig(efiboot)
 BuildRequires : pkgconfig(popt)
 
@@ -24,38 +25,59 @@ the next running boot option, and more.
 %package bin
 Summary: bin components for the efibootmgr package.
 Group: Binaries
+Requires: efibootmgr-license = %{version}-%{release}
 
 %description bin
 bin components for the efibootmgr package.
 
 
-%package doc
-Summary: doc components for the efibootmgr package.
-Group: Documentation
+%package license
+Summary: license components for the efibootmgr package.
+Group: Default
 
-%description doc
-doc components for the efibootmgr package.
+%description license
+license components for the efibootmgr package.
+
+
+%package man
+Summary: man components for the efibootmgr package.
+Group: Default
+
+%description man
+man components for the efibootmgr package.
 
 
 %prep
 %setup -q -n efibootmgr-16
+cd %{_builddir}/efibootmgr-16
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1525540720
-make  %{?_smp_mflags} EFIDIR=org.clearlinux
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604092736
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+make  %{?_smp_mflags}  EFIDIR=org.clearlinux
+
 
 %install
-export SOURCE_DATE_EPOCH=1525540720
+export SOURCE_DATE_EPOCH=1604092736
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/efibootmgr
+cp %{_builddir}/efibootmgr-16/COPYING %{buildroot}/usr/share/package-licenses/efibootmgr/74a8a6531a42e124df07ab5599aad63870fa0bd4
 %make_install EFIDIR=org.clearlinux
-## make_install_append content
+## install_append content
 install -D -m 00755 src/efibootmgr %{buildroot}/usr/bin/efibootmgr
 install -D -m 00644 src/efibootmgr.8 %{buildroot}/usr/share/man/man8/efibootmgr.8
-## make_install_append end
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -65,6 +87,11 @@ install -D -m 00644 src/efibootmgr.8 %{buildroot}/usr/share/man/man8/efibootmgr.
 /usr/bin/efibootdump
 /usr/bin/efibootmgr
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man8/*
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/efibootmgr/74a8a6531a42e124df07ab5599aad63870fa0bd4
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man8/efibootdump.8
+/usr/share/man/man8/efibootmgr.8
